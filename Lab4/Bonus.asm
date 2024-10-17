@@ -8,13 +8,14 @@ List p=18f4520
     CLRF 0x01
     CLRF 0x10
     CLRF 0x11
-    CLRF 0x12
+    CLRF 0x20
+    CLRF 0x21
     
     MOVLW 0x00 ; F0 = 0
-    MOVWF 0x10
+    MOVWF 0x01
     MOVLW 0x01 ; F1 = 1
     MOVWF 0x11
-    MOVLW 0x0F ; n
+    MOVLW 0x10 ; n
     MOVWF 0x13
     
     start:
@@ -24,18 +25,26 @@ List p=18f4520
 	GOTO finish
     
     fib:
-	MOVFF 0x10, 0x12
+	;higher bits
+	MOVFF 0x00, 0x20
+	MOVF 0x10, W
+	MOVFF 0x20, 0x10
+	ADDWF 0x00
+    
+        ;lower bits
+	MOVFF 0x01, 0x21
 	MOVF 0x11, W
-	MOVFF 0x12, 0x11
-	ADDWF 0x10
-	BTFSC STATUS, C ;if there is a carry after add, then 0x00 + 1
+	MOVFF 0x21, 0x11
+	ADDWF 0x01
+	BTFSC STATUS, C
 	INCF 0x00
 	BCF STATUS, C
 	RETURN
     
     finish: 
-	MOVFF 0x10, 0x01 ;move to 0x01
+	
 	CLRF 0x10
 	CLRF 0x11
-	CLRF 0x12
+	CLRF 0x20
+	CLRF 0x21
 	end
