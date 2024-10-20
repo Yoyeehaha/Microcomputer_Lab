@@ -1,5 +1,5 @@
 #include<xc.h>
-extern unsigned char mysqrt(unsigned a);
+extern unsigned char mysqrt(unsigned char a);
 
 void main(void) {
     
