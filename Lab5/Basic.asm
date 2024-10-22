@@ -3,22 +3,20 @@ GLOBAL _mysqrt
 PSECT mytext,local,class=CODE,reloc=2    
     
 _mysqrt:
-    MOVFF WREG, 0x03
-    MOVLW 0x00
     MOVWF 0x01
     MOVLW 0x0F
-    MOVWF 0x02
+    MOVWF 0x03
 sqrt_loop:
-    MOVFF 0x01, WREG
-    MULWF 0x01
+    MOVFF 0x02, WREG
+    MULWF 0x02
     MOVFF PRODL, WREG
-    CPFSGT 0x03
+    CPFSGT 0x01
     GOTO sqrt_found
-    INCF 0x01
-    DECFSZ 0x02
+    INCF 0x02
+    DECFSZ 0x03
     GOTO sqrt_loop
 
 sqrt_found:
-    MOVFF 0x01, WREG
+    MOVFF 0x02, WREG
 	
-RETURN	
+RETURN		
