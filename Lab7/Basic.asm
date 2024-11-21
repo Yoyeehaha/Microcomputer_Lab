@@ -141,7 +141,7 @@ main:
     BRA main 
 
 State1: 
-    MOVLW 0x04    ;CHECK if STATE1 done once
+    MOVLW 0x05    ;CHECK if STATE1 done once
     CPFSLT 0x20
     GOTO main
     
@@ -154,7 +154,7 @@ State1:
     BRA main
 
 State2: 
-    MOVLW 0x08    ;CHECK if STATE2 done once
+    MOVLW 0x09    ;CHECK if STATE2 done once
     CPFSLT 0x21
     GOTO main
     
@@ -167,7 +167,7 @@ State2:
     BRA main
 
 State3: 
-    MOVLW 0x10   ;CHECK if STATE3 done once
+    MOVLW 0x11   ;CHECK if STATE3 done once
     CPFSLT 0x22
     GOTO main
     
